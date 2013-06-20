@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'iPhotoFlickrSync' target in the 'iPhotoFlickrSync' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
