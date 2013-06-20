@@ -19,6 +19,8 @@
 		87B54A5C177390ED000780BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87B54A5A177390ED000780BA /* InfoPlist.strings */; };
 		87B54A5F177390ED000780BA /* iPhotoFlickrSyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B54A5E177390ED000780BA /* iPhotoFlickrSyncTests.m */; };
 		87B54A721773942A000780BA /* ObjectiveFlickr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B54A6F177393D1000780BA /* ObjectiveFlickr.framework */; };
+		87B54A7517739511000780BA /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B54A7417739511000780BA /* ScriptingBridge.framework */; };
+		87B54A801773960B000780BA /* IPFSLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B54A7F1773960B000780BA /* IPFSLibrary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,10 @@
 		87B54A5D177390ED000780BA /* iPhotoFlickrSyncTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iPhotoFlickrSyncTests.h; sourceTree = "<group>"; };
 		87B54A5E177390ED000780BA /* iPhotoFlickrSyncTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iPhotoFlickrSyncTests.m; sourceTree = "<group>"; };
 		87B54A68177393D1000780BA /* ObjectiveFlickr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveFlickr.xcodeproj; path = objectiveflickr/ObjectiveFlickr.xcodeproj; sourceTree = SOURCE_ROOT; };
+		87B54A7417739511000780BA /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		87B54A7A17739573000780BA /* iPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoto.h; sourceTree = "<group>"; };
+		87B54A7E1773960B000780BA /* IPFSLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPFSLibrary.h; sourceTree = "<group>"; };
+		87B54A7F1773960B000780BA /* IPFSLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPFSLibrary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87B54A7517739511000780BA /* ScriptingBridge.framework in Frameworks */,
 				87B54A721773942A000780BA /* ObjectiveFlickr.framework in Frameworks */,
 				87B54A32177390EC000780BA /* Cocoa.framework in Frameworks */,
 			);
@@ -114,6 +121,7 @@
 		87B54A30177390EC000780BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87B54A7417739511000780BA /* ScriptingBridge.framework */,
 				87B54A31177390EC000780BA /* Cocoa.framework */,
 				87B54A52177390ED000780BA /* SenTestingKit.framework */,
 				87B54A33177390EC000780BA /* Other Frameworks */,
@@ -134,8 +142,11 @@
 		87B54A37177390EC000780BA /* iPhotoFlickrSync */ = {
 			isa = PBXGroup;
 			children = (
+				87B54A7A17739573000780BA /* iPhoto.h */,
 				87B54A43177390EC000780BA /* IPFSAppDelegate.h */,
 				87B54A44177390EC000780BA /* IPFSAppDelegate.m */,
+				87B54A7E1773960B000780BA /* IPFSLibrary.h */,
+				87B54A7F1773960B000780BA /* IPFSLibrary.m */,
 				87B54A46177390ED000780BA /* MainMenu.xib */,
 				87B54A49177390ED000780BA /* iPhotoFlickrSync.xcdatamodeld */,
 				87B54A38177390EC000780BA /* Supporting Files */,
@@ -318,6 +329,7 @@
 				87B54A3E177390EC000780BA /* main.m in Sources */,
 				87B54A45177390EC000780BA /* IPFSAppDelegate.m in Sources */,
 				87B54A4B177390ED000780BA /* iPhotoFlickrSync.xcdatamodeld in Sources */,
+				87B54A801773960B000780BA /* IPFSLibrary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +519,7 @@
 				87B54A64177390ED000780BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		87B54A65177390ED000780BA /* Build configuration list for PBXNativeTarget "iPhotoFlickrSyncTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +528,7 @@
 				87B54A67177390ED000780BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
