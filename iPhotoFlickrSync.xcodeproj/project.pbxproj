@@ -18,6 +18,7 @@
 		87B54A54177390ED000780BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B54A31177390EC000780BA /* Cocoa.framework */; };
 		87B54A5C177390ED000780BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87B54A5A177390ED000780BA /* InfoPlist.strings */; };
 		87B54A5F177390ED000780BA /* iPhotoFlickrSyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B54A5E177390ED000780BA /* iPhotoFlickrSyncTests.m */; };
+		87B54A721773942A000780BA /* ObjectiveFlickr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B54A6F177393D1000780BA /* ObjectiveFlickr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 87B54A2D177390EC000780BA;
 			remoteInfo = iPhotoFlickrSync;
+		};
+		87B54A6E177393D1000780BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87B54A68177393D1000780BA /* ObjectiveFlickr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6A8666490F9593B200325E1C;
+			remoteInfo = "ObjectiveFlickr (framework)";
+		};
+		87B54A70177393D1000780BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87B54A68177393D1000780BA /* ObjectiveFlickr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6ABF72E60F939BE600B9179E;
+			remoteInfo = "ObjectiveFlickr (library)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -51,6 +66,7 @@
 		87B54A5B177390ED000780BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87B54A5D177390ED000780BA /* iPhotoFlickrSyncTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iPhotoFlickrSyncTests.h; sourceTree = "<group>"; };
 		87B54A5E177390ED000780BA /* iPhotoFlickrSyncTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iPhotoFlickrSyncTests.m; sourceTree = "<group>"; };
+		87B54A68177393D1000780BA /* ObjectiveFlickr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveFlickr.xcodeproj; path = objectiveflickr/ObjectiveFlickr.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87B54A721773942A000780BA /* ObjectiveFlickr.framework in Frameworks */,
 				87B54A32177390EC000780BA /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,6 +94,7 @@
 		87B54A25177390EC000780BA = {
 			isa = PBXGroup;
 			children = (
+				87B54A68177393D1000780BA /* ObjectiveFlickr.xcodeproj */,
 				87B54A37177390EC000780BA /* iPhotoFlickrSync */,
 				87B54A57177390ED000780BA /* iPhotoFlickrSyncTests */,
 				87B54A30177390EC000780BA /* Frameworks */,
@@ -156,6 +174,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		87B54A69177393D1000780BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87B54A6F177393D1000780BA /* ObjectiveFlickr.framework */,
+				87B54A71177393D1000780BA /* libObjectiveFlickr.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -215,6 +242,12 @@
 			mainGroup = 87B54A25177390EC000780BA;
 			productRefGroup = 87B54A2F177390EC000780BA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 87B54A69177393D1000780BA /* Products */;
+					ProjectRef = 87B54A68177393D1000780BA /* ObjectiveFlickr.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				87B54A2D177390EC000780BA /* iPhotoFlickrSync */,
@@ -222,6 +255,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		87B54A6F177393D1000780BA /* ObjectiveFlickr.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ObjectiveFlickr.framework;
+			remoteRef = 87B54A6E177393D1000780BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		87B54A71177393D1000780BA /* libObjectiveFlickr.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libObjectiveFlickr.a;
+			remoteRef = 87B54A70177393D1000780BA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		87B54A2C177390EC000780BA /* Resources */ = {
