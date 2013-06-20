@@ -1,0 +1,3 @@
+#error Supply your own Flickr API key and shared secret it, or apply from http://flickr.com/services/api/keys/apply
+#define OBJECTIVE_FLICKR_SAMPLE_API_KEY             @""
+#define OBJECTIVE_FLICKR_SAMPLE_API_SHARED_SECRET   @""

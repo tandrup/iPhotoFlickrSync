@@ -7,6 +7,15 @@
 //
 
 #import "IPFSAppDelegate.h"
+#import "FlickrAPIKey.h"
+
+static NSString *kCallbackURLBaseString = @"iphotoflickrsync://callback";
+static NSString *kOAuthAuth = @"OAuth";
+static NSString *kFrobRequest = @"Frob";
+static NSString *kTryObtainAuthToken = @"TryAuth";
+static NSString *kTestLogin = @"TestLogin";
+
+const NSTimeInterval kTryObtainAuthTokenInterval = 3.0;
 
 @implementation IPFSAppDelegate
 
@@ -16,7 +25,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+	[[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(handleIncomingURL:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+    
+    
+    _flickrContext = [[OFFlickrAPIContext alloc] initWithAPIKey:OBJECTIVE_FLICKR_SAMPLE_API_KEY sharedSecret:OBJECTIVE_FLICKR_SAMPLE_API_SHARED_SECRET];
+    
+    _flickrRequest = [[OFFlickrAPIRequest alloc] initWithAPIContext:_flickrContext];
+    _flickrRequest.delegate = self;
+    _flickrRequest.requestTimeoutInterval = 60.0;
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "org.tandrup.iPhotoFlickrSync" in the user's Application Support directory.
@@ -178,6 +194,124 @@
     }
 
     return NSTerminateNow;
+}
+
+- (IBAction)oauthAuthenticationAction:(id)sender {
+    NSLog(@"Authenticating");
+    [_progressIndicator startAnimation:self];
+    [_progressLabel setStringValue:@"Starting OAuth authentication..."];
+    
+    _flickrRequest.sessionInfo = kOAuthAuth;
+    [_flickrRequest fetchOAuthRequestTokenWithCallbackURL:[NSURL URLWithString:kCallbackURLBaseString]];
+    [_oauthAuthButton setEnabled:NO];
+
+}
+
+# pragma mark URL delegate
+
+- (void)handleIncomingURL:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
+{
+    NSURL *callbackURL = [NSURL URLWithString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
+    NSLog(@"Callback URL: %@", [callbackURL absoluteString]);
+    
+    NSString *requestToken= nil;
+    NSString *verifier = nil;
+    
+    BOOL result = OFExtractOAuthCallback(callbackURL, [NSURL URLWithString:kCallbackURLBaseString], &requestToken, &verifier);
+    if (!result) {
+        NSLog(@"Invalid callback URL");
+    }
+    
+    [_flickrRequest fetchOAuthAccessTokenWithRequestToken:requestToken verifier:verifier];
+}
+
+# pragma mark OFFlickrAPIRequestDelegate
+
+- (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest didObtainOAuthRequestToken:(NSString *)inRequestToken secret:(NSString *)inSecret;
+{
+    _flickrContext.OAuthToken = inRequestToken;
+    _flickrContext.OAuthTokenSecret = inSecret;
+    
+    NSURL *authURL = [_flickrContext userAuthorizationURLWithRequestToken:inRequestToken requestedPermission:OFFlickrWritePermission];
+    NSLog(@"Auth URL: %@", [authURL absoluteString]);
+    [[NSWorkspace sharedWorkspace] openURL:authURL];
+    
+    [_progressLabel setStringValue:@"Waiting fo user authentication (OAuth)..."];
+}
+
+- (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest didObtainOAuthAccessToken:(NSString *)inAccessToken secret:(NSString *)inSecret userFullName:(NSString *)inFullName userName:(NSString *)inUserName userNSID:(NSString *)inNSID
+{
+    _flickrContext.OAuthToken = inAccessToken;
+    _flickrContext.OAuthTokenSecret = inSecret;
+    
+    NSLog(@"Token: %@, secret: %@", inAccessToken, inSecret);
+    
+    [_progressLabel setStringValue:@"Authenticated"];
+    [_progressIndicator stopAnimation:self];
+    [_testLoginButton setEnabled:YES];
+    NSRunAlertPanel(@"Authenticated", [NSString stringWithFormat:@"OAuth access token: %@, secret: %@", inAccessToken, inSecret], @"Dismiss", nil, nil);
+}
+
+- (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest didCompleteWithResponse:(NSDictionary *)inResponseDictionary
+{
+    NSLog(@"%s, return: %@", __PRETTY_FUNCTION__, inResponseDictionary);
+    
+    [_progressIndicator stopAnimation:self];
+    [_progressLabel setStringValue:@"API call succeeded"];
+    
+    if (inRequest.sessionInfo == kFrobRequest) {
+        _frob = [[inResponseDictionary valueForKeyPath:@"frob._text"] copy];
+        NSLog(@"%@: %@", kFrobRequest, _frob);
+        
+        NSURL *authURL = [_flickrContext loginURLFromFrobDictionary:inResponseDictionary requestedPermission:OFFlickrWritePermission];
+        [[NSWorkspace sharedWorkspace] openURL:authURL];
+        
+        [self performSelector:@selector(tryObtainAuthToken) withObject:nil afterDelay:kTryObtainAuthTokenInterval];
+        
+        [_progressIndicator startAnimation:self];
+        [_progressLabel setStringValue:@"Waiting for user authentication..."];
+    }
+    else if (inRequest.sessionInfo == kTryObtainAuthToken) {
+        NSString *authToken = [inResponseDictionary valueForKeyPath:@"auth.token._text"];
+        NSLog(@"%@: %@", kTryObtainAuthToken, authToken);
+        
+        _flickrContext.authToken = authToken;
+        _flickrRequest.sessionInfo = nil;
+        
+        [_testLoginButton setEnabled:YES];
+    }
+    else if (inRequest.sessionInfo == kTestLogin) {
+        _flickrRequest.sessionInfo = nil;
+        [_testLoginButton setEnabled:YES];
+        NSRunAlertPanel(@"Test OK!", @"API returns successfully", @"Dismiss", nil, nil);
+    }
+}
+
+- (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest didFailWithError:(NSError *)inError
+{
+    NSLog(@"%s, error: %@", __PRETTY_FUNCTION__, inError);
+    
+    if (inRequest.sessionInfo == kTryObtainAuthToken) {
+        [self performSelector:@selector(tryObtainAuthToken) withObject:nil afterDelay:kTryObtainAuthTokenInterval];
+    }
+    else {
+        if (inRequest.sessionInfo == kOAuthAuth || inRequest.sessionInfo == kFrobRequest || inRequest.sessionInfo == kTryObtainAuthToken) {
+            [_oauthAuthButton setEnabled:YES];
+            [_testLoginButton setEnabled:NO];
+        }
+        else if (inRequest.sessionInfo == kTestLogin) {
+            [_testLoginButton setEnabled:YES];
+        }
+        
+        [_progressIndicator stopAnimation:self];
+        [_progressLabel setStringValue:@"Error"];
+        NSRunAlertPanel(@"API Error", [NSString stringWithFormat:@"An error occurred in the stage \"%@\", error: %@", inRequest.sessionInfo, inError], @"Dismiss", nil, nil);
+    }
+}
+
+- (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest imageUploadSentBytes:(NSUInteger)inSentBytes totalBytes:(NSUInteger)inTotalBytes
+{
+    NSLog(@"%s %lu/%lu", __PRETTY_FUNCTION__, inSentBytes, inTotalBytes);
 }
 
 @end

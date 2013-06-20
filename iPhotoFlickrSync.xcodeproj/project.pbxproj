@@ -73,6 +73,7 @@
 		87B54A7A17739573000780BA /* iPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoto.h; sourceTree = "<group>"; };
 		87B54A7E1773960B000780BA /* IPFSLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPFSLibrary.h; sourceTree = "<group>"; };
 		87B54A7F1773960B000780BA /* IPFSLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPFSLibrary.m; sourceTree = "<group>"; };
+		87B54A8117739AAE000780BA /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +143,7 @@
 		87B54A37177390EC000780BA /* iPhotoFlickrSync */ = {
 			isa = PBXGroup;
 			children = (
+				87B54A8117739AAE000780BA /* FlickrAPIKey.h */,
 				87B54A7A17739573000780BA /* iPhoto.h */,
 				87B54A43177390EC000780BA /* IPFSAppDelegate.h */,
 				87B54A44177390EC000780BA /* IPFSAppDelegate.m */,
