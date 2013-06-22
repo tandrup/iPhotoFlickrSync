@@ -142,6 +142,11 @@ const NSTimeInterval kTryObtainAuthTokenInterval = 3.0;
 - (IBAction)saveAction:(id)sender
 {
     NSError *error = nil;
+
+    Photo *newPhoto = [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"Photo"
+                                    inManagedObjectContext:[self managedObjectContext]];
+    newPhoto.flickrID = @"FOO";
     
     if (![[self managedObjectContext] commitEditing]) {
         NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
@@ -150,6 +155,7 @@ const NSTimeInterval kTryObtainAuthTokenInterval = 3.0;
     if (![[self managedObjectContext] save:&error]) {
         [[NSApplication sharedApplication] presentError:error];
     }
+    NSLog(@"saved data");
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -199,7 +205,6 @@ const NSTimeInterval kTryObtainAuthTokenInterval = 3.0;
 }
 
 - (IBAction)oauthAuthenticationAction:(id)sender {
-    NSLog(@"Authenticating");
     [_progressIndicator startAnimation:self];
     [_progressLabel setStringValue:@"Starting OAuth authentication..."];
     
