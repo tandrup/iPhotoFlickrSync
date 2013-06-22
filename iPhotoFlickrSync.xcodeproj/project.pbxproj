@@ -21,6 +21,8 @@
 		87B54A721773942A000780BA /* ObjectiveFlickr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B54A6F177393D1000780BA /* ObjectiveFlickr.framework */; };
 		87B54A7517739511000780BA /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B54A7417739511000780BA /* ScriptingBridge.framework */; };
 		87B54A801773960B000780BA /* IPFSLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B54A7F1773960B000780BA /* IPFSLibrary.m */; };
+		87B54A851774E99D000780BA /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B54A841774E99D000780BA /* Photo.m */; };
+		87B54A881774E99D000780BA /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B54A871774E99D000780BA /* Album.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,10 @@
 		87B54A7E1773960B000780BA /* IPFSLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPFSLibrary.h; sourceTree = "<group>"; };
 		87B54A7F1773960B000780BA /* IPFSLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPFSLibrary.m; sourceTree = "<group>"; };
 		87B54A8117739AAE000780BA /* FlickrAPIKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIKey.h; sourceTree = "<group>"; };
+		87B54A831774E99D000780BA /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		87B54A841774E99D000780BA /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		87B54A861774E99D000780BA /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
+		87B54A871774E99D000780BA /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,10 @@
 				87B54A7F1773960B000780BA /* IPFSLibrary.m */,
 				87B54A46177390ED000780BA /* MainMenu.xib */,
 				87B54A49177390ED000780BA /* iPhotoFlickrSync.xcdatamodeld */,
+				87B54A861774E99D000780BA /* Album.h */,
+				87B54A871774E99D000780BA /* Album.m */,
+				87B54A831774E99D000780BA /* Photo.h */,
+				87B54A841774E99D000780BA /* Photo.m */,
 				87B54A38177390EC000780BA /* Supporting Files */,
 			);
 			path = iPhotoFlickrSync;
@@ -332,6 +342,8 @@
 				87B54A45177390EC000780BA /* IPFSAppDelegate.m in Sources */,
 				87B54A4B177390ED000780BA /* iPhotoFlickrSync.xcdatamodeld in Sources */,
 				87B54A801773960B000780BA /* IPFSLibrary.m in Sources */,
+				87B54A851774E99D000780BA /* Photo.m in Sources */,
+				87B54A881774E99D000780BA /* Album.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

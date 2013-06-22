@@ -8,6 +8,8 @@
 
 #import "IPFSAppDelegate.h"
 #import "FlickrAPIKey.h"
+#import "Album.h"
+#import "Photo.h"
 
 static NSString *kCallbackURLBaseString = @"iphotoflickrsync://callback";
 static NSString *kOAuthAuth = @"OAuth";
