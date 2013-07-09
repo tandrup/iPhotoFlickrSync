@@ -13,7 +13,7 @@
 
 - (void) listAlbums {
     iPhotoApplication *iPhoto = [SBApplication applicationWithBundleIdentifier:@"com.apple.iPhoto"];
-    
+
     if ([iPhoto isRunning]) {
         NSLog(@"Is running");
         

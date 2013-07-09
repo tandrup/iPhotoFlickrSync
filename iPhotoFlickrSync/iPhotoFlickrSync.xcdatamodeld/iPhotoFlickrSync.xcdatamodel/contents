@@ -10,6 +10,7 @@
         <attribute name="iPhotoID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="albums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Album" inverseName="photos" inverseEntity="Album" syncable="YES"/>
     </entity>
+    <fetchRequest name="AllPhotos" entity="Photo"/>
     <fetchRequest name="GetPhotoByIPhotoID" entity="Photo" predicateString="iPhotoID == $ID"/>
     <elements>
         <element name="Album" positionX="385" positionY="189" width="128" height="88"/>

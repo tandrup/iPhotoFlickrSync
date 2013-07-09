@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8797E743177785CC004BE29B /* IPFSPhotoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8797E742177785CC004BE29B /* IPFSPhotoUploader.m */; };
 		87B54A32177390EC000780BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B54A31177390EC000780BA /* Cocoa.framework */; };
 		87B54A3C177390EC000780BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87B54A3A177390EC000780BA /* InfoPlist.strings */; };
 		87B54A3E177390EC000780BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B54A3D177390EC000780BA /* main.m */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8797E741177785CC004BE29B /* IPFSPhotoUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPFSPhotoUploader.h; sourceTree = "<group>"; };
+		8797E742177785CC004BE29B /* IPFSPhotoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPFSPhotoUploader.m; sourceTree = "<group>"; };
 		87B54A2E177390EC000780BA /* iPhotoFlickrSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPhotoFlickrSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B54A31177390EC000780BA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		87B54A34177390EC000780BA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -153,6 +156,8 @@
 				87B54A7A17739573000780BA /* iPhoto.h */,
 				87B54A43177390EC000780BA /* IPFSAppDelegate.h */,
 				87B54A44177390EC000780BA /* IPFSAppDelegate.m */,
+				8797E741177785CC004BE29B /* IPFSPhotoUploader.h */,
+				8797E742177785CC004BE29B /* IPFSPhotoUploader.m */,
 				87B54A7E1773960B000780BA /* IPFSLibrary.h */,
 				87B54A7F1773960B000780BA /* IPFSLibrary.m */,
 				87B54A46177390ED000780BA /* MainMenu.xib */,
@@ -344,6 +349,7 @@
 				87B54A801773960B000780BA /* IPFSLibrary.m in Sources */,
 				87B54A851774E99D000780BA /* Photo.m in Sources */,
 				87B54A881774E99D000780BA /* Album.m in Sources */,
+				8797E743177785CC004BE29B /* IPFSPhotoUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
