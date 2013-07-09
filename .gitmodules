@@ -1,3 +1,3 @@
 [submodule "objectiveflickr"]
-	path = objectiveflickr
+	path = ObjectiveC/objectiveflickr
 	url = git@github.com:lukhnos/objectiveflickr.git
