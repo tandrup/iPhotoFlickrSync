@@ -10,7 +10,7 @@ def library = Sql.newInstance( 'jdbc:sqlite:/Users/mtandrup/Pictures/iPhoto-bibl
 
 faces.rows("SELECT fn.name, df.masteruuid FROM RKFaceName fn INNER JOIN RKDetectedFace df ON fn.facekey = df.facekey").each{
 	println(it);
-	library.rows("SELECT imagePath FROM RKMaster WHERE uuid = '" + it.masterUuid + "'").each {
+	library.rows("SELECT imagePath FROM RKMaster WHERE fileIsReference = 0 AND uuid = '" + it.masterUuid + "'").each {
 		println(it);
 	}
 }
